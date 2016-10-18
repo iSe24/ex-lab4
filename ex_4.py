@@ -22,8 +22,8 @@ def test_3():
 def test_4():
     return [1, 2]
 
-
 test_1()
 test_2()
 test_3()
 test_4()
+
