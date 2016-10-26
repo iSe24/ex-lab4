@@ -12,15 +12,17 @@ class Unique(object):
         # Например: ignore_case = True, Aбв и АБВ разные строки
         #           ignore_case = False, Aбв и АБВ одинаковые строки, одна из них удалится
         # По-умолчанию ignore_case = False
+        # проверяем ignore_case - по умолчанию Fasle и если кваркс передан+присутсвует ключ-"ингор_кейс" + тип передаваемой переменной боол 
+        # тогда перепресваиваем
         self.ignore_case = False
         if (len(kwargs) > 0 and kwargs['ignore_case'] != None) and (type(kwargs['ignore_case']) == bool):
             self.ignore_case = kwargs['ignore_case']
-            if(self.ignore_case):
-                self.arr = list(Counter(map(lambda x: x.lower(),items)))
+            if(self.ignore_case):               # True
+                self.arr = list(Counter(map(lambda x: x.lower(),items))) #весь лист к нижнему регистру
         else:
-            self.arr = list(Counter(items))
+            self.arr = list(Counter(items)) #list(Counter) - объекты которые встречаются в листе хотя бы один раз.Сам каунтер считает число вхождений
     def __next__(self):
-        while self.i < len(self.arr)-1:
+        while self.i < len(self.arr)-1:     #функция некст
             self.i += 1
             return self.arr[self.i]
         raise StopIteration()
