@@ -24,12 +24,12 @@ def f1(arg):
     return list(unique(list(field(arg, "job-name")), ignore_case=True))
 @print_result
 def f2(arg):
-    return list(filter(lambda x: str(x).startswith('программист'), arg))        #startswith  - чекает где начинается с передаваемой str
-@print_result                               #filter Возвращает итератор из тех элементов, для которых function возвращает истину.
+    return [x for x in arg if "Программист" in x]
+@print_result
 def f3(arg):
-    return list(map(lambda x: "{} с опытом Python".format(x), arg))
+    return [x + " с опытом Python" for x in arg]
 @print_result
 def f4(arg):
-    return list(map(lambda x: "{}, зарплата {} руб.".format(*x), zip(arg, gen_random(100000, 200000, len(arg)))))   #zip итератор, возвращающий кортежи
+    return [x + ", зарплата " + str(next(gen_random(100000, 200000, len(arg)))) + " руб" for x in arg]  
 with timer():
     f4(f3(f2(f1(data))))
